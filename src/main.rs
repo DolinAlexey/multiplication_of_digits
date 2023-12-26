@@ -21,9 +21,10 @@ fn digit_product(number: u32) -> u8 {
 fn parsing_product(_n: u32) -> u32 {
     let mut parsed_number: Vec<u32> = split_number(_n);
     parsed_number.retain(|&i| i != 0);
+    let iter = parsed_number.iter();
     let mut result: u32 = parsed_number[0];
-    for _index in 1..parsed_number.len() {
-        result = result * parsed_number[_index];
+    for val in iter {
+        result *= val;
     }
     result as u32
 }
@@ -35,7 +36,7 @@ fn split_number(_n: u32) -> Vec<u32> {
     let count = digits_in_a_number(number);
     for _ in 0..count {
         splitted_number.push(&number % 10);
-        number = number / 10;
+        number /= 10;
     }
     splitted_number
 }
